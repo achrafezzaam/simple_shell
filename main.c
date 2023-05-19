@@ -11,11 +11,11 @@ int main(void)
 	while ((count = getline(&line, &len, stdin)) != -1)
 	{
 		line[count - 1] = '\0';
-		argv = cmdarr(line);
 		if (!_strcmp(line, "exit"))
 		{
 			break;
 		}
+		argv = cmdarr(line);
 		exec_child(argv);
 		prompt();
 	}
