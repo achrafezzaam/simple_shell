@@ -9,13 +9,22 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
-extern char **environ;
 
+
+extern char **environ;
+/**
+ * struct path_list - to represent a linked list of directory names
+ *
+ * @dirname: Name of the directory
+ *
+ * @next: Pointer to the next node in the linked list
+ */
 typedef struct path_list
 {
-        char *dirname;
-        struct path_list *next;
+	char *dirname;          /* Name of the directory */
+	struct path_list *next; /* Pointer to the next node in the linked list */
 } list_p;
+
 
 int _putchar(char c);
 size_t _strlen(const char *input);

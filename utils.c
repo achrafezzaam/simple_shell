@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * _strlen - Calculate the length of a string.
+ *
+ * @input: The input string.
+ *
+ * Return: The length of the string.
+ */
 size_t _strlen(const char *input)
 {
 	size_t count = 0;
@@ -11,7 +17,14 @@ size_t _strlen(const char *input)
 	}
 	return (count);
 }
-
+/**
+ * _strcmp - Compare two strings.
+ *
+ * @s1: The first string.
+ * @s2: The second string.
+ *
+ * Return: 0 if the strings are equal, 1 otherwise.
+ */
 int _strcmp(char *s1, char *s2)
 {
 	while (*s1)
@@ -23,7 +36,15 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
-
+/**
+ * _strncmp - Compare two strings up to a specified number of characters.
+ *
+ * @s1: The first string.
+ * @s2: The second string.
+ * @n: The number of characters to compare.
+ *
+ * Return: 0 if the strings are equal up to 'n' characters, 1 otherwise.
+ */
 int _strncmp(char *s1, char *s2, int n)
 {
 	int i;
@@ -35,7 +56,11 @@ int _strncmp(char *s1, char *s2, int n)
 	}
 	return (0);
 }
-
+/**
+ * _print - Print a string followed by a newline character.
+ *
+ * @str: The string to print.
+ */
 void _print(char *str)
 {
 	int i = 0;
@@ -49,7 +74,14 @@ void _print(char *str)
 	}
 	putchar('\n');
 }
-
+/**
+ * _strcat -Concatenate two strings, with an optional '/' character in between.
+ *
+ * @str1: The first string.
+ * @str2: The second string.
+ *
+ * Return: A pointer to the concatenated string.
+ */
 char *_strcat(char *str1, char *str2)
 {
 	char *buff;
