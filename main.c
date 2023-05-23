@@ -10,11 +10,8 @@ int main(void)
 	prompt();
 	while ((count = getline(&line, &len, stdin)) != -1)
 	{
-		line[count - 1] = '\0';
-		if (!_strcmp(line, "exit"))
-		{
-			break;
-		}
+		if (line[count - 1] == '\n')
+			line[count - 1] = '\0';
 		argv = cmdarr(line);
 		exec_child(argv);
 		prompt();
