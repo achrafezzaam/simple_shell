@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * _strdup - Create a duplicate of a string.
+ *
+ * @str: The string to duplicate.
+ *
+ * Return: A pointer to the newly allocated duplicate string.
+ */
 char *_strdup(char *str)
 {
 	char *dup;
@@ -7,10 +13,10 @@ char *_strdup(char *str)
 	size_t len = _strlen(str);
 
 	dup = malloc(sizeof(char *) * len);
-	while(str[i])
+	while (str[i])
 	{
 		dup[i] = str[i];
 		i++;
 	}
-	return(dup);
+	return (dup);
 }

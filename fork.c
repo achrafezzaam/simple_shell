@@ -1,5 +1,13 @@
 #include "shell.h"
 
+/**
+* check_input - Check the input command and perform actions accordingly
+*
+* @cmd : thee input command
+*
+* Return: nothing
+*/
+
 void check_input(char *cmd)
 {
 	int i = 0;
@@ -10,13 +18,22 @@ void check_input(char *cmd)
 	}
 	else if (!_strcmp(cmd, "env"))
 	{
-		while(environ[i])
+		while (environ[i])
 		{
 			_print(environ[i]);
 			i++;
 		}
 	}
 }
+
+/**
+* exec_child - Execute the child process
+*
+* @argv: An array of command arguments
+*
+* Return: nothing
+*/
+
 void exec_child(char *argv[])
 {
 	int status;
@@ -27,7 +44,7 @@ void exec_child(char *argv[])
 	{
 		argv[0] = file_exist(argv[0]);
 		child_pid = fork();
-		if(child_pid == 0)
+		if (child_pid == 0)
 			execve(argv[0], argv, environ);
 		else
 			wait(&status);

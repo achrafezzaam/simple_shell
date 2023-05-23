@@ -10,7 +10,11 @@ int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
-
+/**
+ * prompt - write the character c to stdout
+ *
+ * Return: On success 1.
+ */
 void prompt(void)
 {
 	_putchar('$');
