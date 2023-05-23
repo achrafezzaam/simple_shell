@@ -38,12 +38,16 @@ int _strncmp(char *s1, char *s2, int n)
 
 void _print(char *str)
 {
-	while (*str)
+	int i = 0;
+	char *dup;
+
+	dup = _strdup(str);
+	while (dup[i])
 	{
-		_putchar(*str);
-		str++;
+		putchar(dup[i]);
+		i++;
 	}
-	_putchar('\n');
+	putchar('\n');
 }
 
 char *_strcat(char *str1, char *str2)

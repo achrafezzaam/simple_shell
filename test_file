@@ -1,0 +1,6 @@
+/ls
+/bin/ls
+/pwd
+ls -la
+/ls -l /tmp
+env

@@ -33,5 +33,6 @@ char **patharr(char *cmdline);
 void _print(char *str);
 
 char *file_exist(char *cmd);
+char *_strdup(char *str);
 
 #endif

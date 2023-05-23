@@ -29,11 +29,12 @@ int getdirnum(char *str)
 char **cmdarr(char *cmdline)
 {
 	int spaces, i = 0;
+	char *dup = _strdup(cmdline);
 	char **output;
 
-	spaces = getspaces(cmdline);
+	spaces = getspaces(dup);
 	output = malloc(sizeof(char *) * (spaces + 2));
-	output[0] = strtok(cmdline, " ");
+	output[0] = strtok(dup, " ");
 	while(output[i] != NULL)
 	{
 		i++;
@@ -46,10 +47,11 @@ char **patharr(char *cmdline)
 {
         int dirs, i = 0;
         char **output;
+	char *dup = _strdup(cmdline);
 
-        dirs = getdirnum(cmdline);
+        dirs = getdirnum(dup);
         output = malloc(sizeof(char *) * (dirs + 2));
-        output[0] = strtok(cmdline, ":");
+        output[0] = strtok(dup, ":");
         while(output[i] != NULL)
         {
                 i++;
