@@ -107,10 +107,9 @@ list_p *create_list(void)
 	return (head);
 }
 
-int main(void)
+char *valid_path(char *cmd)
 {
 	list_p *head;
-	char *cmd = "/ls";
 	char *newpath;
 
 	head = create_list();
