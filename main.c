@@ -1,27 +1,27 @@
 #include "shell.h"
-/**
- * main - Entry point of the program.
- *
- * Return: Always 0.
- */
+
 int main(void)
 {
-	ssize_t count;
-	size_t len = 0;
-	char *line = NULL;
-	char **argv;
+    ssize_t count;
+    size_t len = 0;
+    char *line = NULL;
+    char **argv;
 
-	prompt();
-	while ((count = getline(&line, &len, stdin)) != -1)
-	{
-		if (line[count - 1] == '\n')
-			line[count - 1] = '\0';
-		argv = cmdarr(line);
-		exec_child(argv);
-		prompt();
-	}
-	if (count == -1)
-		_putchar('\n');
-	free(line);
-	return (0);
+    prompt();
+    while ((count = getline(&line, &len, stdin)) != -1)
+    {
+        line[count - 1] = '\0';
+        if (!_strcmp(line, "exit"))
+        {
+            break;
+        }
+        argv = cmdarr(line);
+        handle_path(count, argv);
+        exec_child(argv);
+        prompt();
+    }
+    if (count == -1)
+        _putchar('\n');
+    free(line);
+    return 0;
 }
