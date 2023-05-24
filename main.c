@@ -16,7 +16,7 @@ int main(void)
             break;
         }
         argv = cmdarr(line);
-        handle_path(count, argv); // Handle the path for each command
+        handle_path(count, argv);
         exec_child(argv);
         prompt();
     }

@@ -5,18 +5,19 @@ int handle_path(int argc, char *argv[])
     char *path_copy;
     char full_path[MAX_PATH_LENGTH];
     char *token;
+    (void) argc;
 
     path = getenv("PATH");
     path_copy = strdup(path);
 
-    token = strtok(path_copy, ":"); // Tokenize command using ":" as the delimiter
+    token = strtok(path_copy, ":");
 
     while (token != NULL)
     {
         snprintf(full_path, MAX_PATH_LENGTH, "%s/%s", token, argv[0]);
         if (access(full_path, F_OK) == 0)
         {
-            argv[0] = full_path; // Replace the command with the full path
+            argv[0] = full_path;
             free(path_copy);
             return 0;
         }
