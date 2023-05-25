@@ -1,29 +1,30 @@
 #include "shell.h"
-/**
- * main - Entry point of the program.
- *
- * Return: Always 0.
- */
+
+void exec_child(char *argv[])
+{
+        int status;
+        pid_t child_pid;
+
+        child_pid = fork();
+        if (child_pid == 0)
+                execve(argv[0], argv, environ);
+	else        
+		wait(&status);
+}
+
 int main(void)
 {
-	ssize_t count;
-	size_t len = 0;
-	char *line = NULL;
-	char **input;
+	char *line;
+	size_t len;
+	ssize_t count = 0;
+	char *argv[] = {"/bin/ls", NULL};
 
-	/*prompt();*/
-	while ((count = getline(&line, &len, stdin)) != -1)
+	while (1)
 	{
-		if (line[count - 1] == '\n')
-			line[count - 1] = '\0';
-		input = cmdarr(line);
-		exec_child(input);
-		/*prompt();*/
+		if ((count = getline(&line, &len, stdin)) == -1)
+			break;
+		exec_child(argv);
 	}
-	/**
-	 *if (count == -1)
-	 *	_putchar('\n');
-	 */
 	free(line);
 	return (0);
 }
