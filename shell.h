@@ -17,4 +17,7 @@ int get_count(char *str, char delim);
 
 char **cmdarr(char *str);
 
+void _print(char *str);
+int _strcmp(char *s1, char *s2);
+
 #endif

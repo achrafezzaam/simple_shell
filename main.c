@@ -1,11 +1,32 @@
 #include "shell.h"
 
-void exec_child(char *argv[])
+void check_input(char **cmd, char *str)
+{
+        int i = 0;
+
+        if (!_strcmp(cmd[0], "exit"))
+        {
+		free(str);
+		free(cmd);
+                exit(98);
+        }
+        else if (!_strcmp(cmd[0], "env"))
+        {
+                while (environ[i])
+                {
+                        _print(environ[i]);
+                        i++;
+                }
+        }
+}
+
+void exec_child(char *argv[], char *str)
 {
         int status;
         pid_t child_pid;
 
-        child_pid = fork();
+        check_input(argv, str);
+	child_pid = fork();
         if (child_pid == 0)
                 execve(argv[0], argv, environ);
 	else        
@@ -24,7 +45,7 @@ int main(void)
 		if ((count = getline(&line, &len, stdin)) == -1)
 			break;
 		argv = cmdarr(line);
-		exec_child(argv);
+		exec_child(argv, line);
 	}
 	free(argv);
 	free(line);
