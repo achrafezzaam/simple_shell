@@ -14,8 +14,8 @@ void exec_child(char *argv[])
 
 int main(void)
 {
-	char *line;
-	size_t len;
+	char *line = NULL;
+	size_t len = 0;
 	ssize_t count = 0;
 	char *argv[] = {"/bin/ls", NULL};
 
