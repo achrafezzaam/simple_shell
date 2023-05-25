@@ -17,14 +17,16 @@ int main(void)
 	char *line = NULL;
 	size_t len = 0;
 	ssize_t count = 0;
-	char *argv[] = {"/bin/ls", NULL};
+	char **argv;
 
 	while (1)
 	{
 		if ((count = getline(&line, &len, stdin)) == -1)
 			break;
+		argv = cmdarr(line);
 		exec_child(argv);
 	}
+	free(argv);
 	free(line);
 	return (0);
 }

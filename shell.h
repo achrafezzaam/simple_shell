@@ -11,4 +11,10 @@
 
 extern char **environ;
 
+int _strlen(char *str);
+char *_strdup(char *str);
+int get_count(char *str, char delim);
+
+char **cmdarr(char *str);
+
 #endif
