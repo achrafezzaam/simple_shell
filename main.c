@@ -1,38 +1,51 @@
 #include "shell.h"
 
+/**
+ * check_input - Title
+ * @cmd: argument 1
+ * @str: argument 2
+ */
 void check_input(char **cmd, char *str)
 {
-        int i = 0;
+int i = 0;
 
-        if (!_strcmp(cmd[0], "exit"))
-        {
+	if (!_strcmp(cmd[0], "exit"))
+	{
 		free(str);
 		free(cmd);
-                exit(98);
-        }
-        else if (!_strcmp(cmd[0], "env"))
-        {
-                while (environ[i])
-                {
-                        _print(environ[i]);
-                        i++;
-                }
-        }
+		exit(98);
+	}
+	else if (!_strcmp(cmd[0], "env"))
+	{
+		while (environ[i])
+		{
+			_print(environ[i]);
+			i++;
+		}
+	}
 }
-
+/**
+ * exec_child - Title
+ * @argv: argument 1
+ * @str: argument 2
+ */
 void exec_child(char *argv[], char *str)
 {
-        int status;
-        pid_t child_pid;
+	int status;
+	pid_t child_pid;
 
-        check_input(argv, str);
+	check_input(argv, str);
 	child_pid = fork();
-        if (child_pid == 0)
-                execve(argv[0], argv, environ);
-	else        
+	if (child_pid == 0)
+		execve(argv[0], argv, environ);
+	else
 		wait(&status);
 }
-
+/**
+ * main - Main function of the program
+ *
+ * Return: On succes return the value 0
+ */
 int main(void)
 {
 	char *line = NULL;
@@ -42,7 +55,8 @@ int main(void)
 
 	while (1)
 	{
-		if ((count = getline(&line, &len, stdin)) == -1)
+		count = getline(&line, &len, stdin);
+		if (count == -1)
 			break;
 		argv = cmdarr(line);
 		exec_child(argv, line);

@@ -1,5 +1,12 @@
 #include "shell.h"
 
+/**
+ * cmdarr - Title
+ * @str: argument 1
+ *
+ * Return: array of strings
+ */
+
 char **cmdarr(char *str)
 {
 	char **output;

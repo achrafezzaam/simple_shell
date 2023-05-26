@@ -1,5 +1,11 @@
 #include "shell.h"
-
+/**
+ * get_count - Give the number of elements separed by the delim value
+ * @str: the string to check
+ * @delim: the delimiter parameter
+ *
+ * Return: the number of elements
+ */
 int get_count(char *str, char delim)
 {
 	int count = 0;
@@ -23,12 +29,12 @@ int get_count(char *str, char delim)
  */
 int _strcmp(char *s1, char *s2)
 {
-        while (*s1)
-        {
-                if (*s1 != *s2)
-                        return (1);
-                s1++;
-                s2++;
-        }
-        return (0);
+	while (*s1)
+	{
+		if (*s1 != *s2)
+			return (1);
+		s1++;
+		s2++;
+	}
+	return (0);
 }
