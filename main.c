@@ -4,6 +4,8 @@
  * check_input - Title
  * @cmd: argument 1
  * @str: argument 2
+ *
+ * Return: return 0 if input is equal to env and 1 if not
  */
 int check_input(char **cmd, char *str)
 {
@@ -42,7 +44,7 @@ void exec_child(char *argv[], char *str)
 		if (child_pid == 0)
 			execve(argv[0], argv, environ);
 		else
-		{	
+		{
 			wait(&status);
 		}
 	}
