@@ -1,63 +1,51 @@
 #include "shell.h"
 
-int check_input(char **cmd)
+void check_input(char **cmd, char *str)
 {
+        int i = 0;
+
         if (!_strcmp(cmd[0], "exit"))
         {
-                return (1);
+		free(str);
+		free(cmd);
+                exit(98);
         }
         else if (!_strcmp(cmd[0], "env"))
         {
-		return (2);
+                while (environ[i])
+                {
+                        _print(environ[i]);
+                        i++;
+                }
         }
-	return(0);
 }
 
-int exec_child(char *argv[])
+void exec_child(char *argv[], char *str)
 {
         int status;
         pid_t child_pid;
 
-        if (check_input(argv) == 0)
-	{
-		child_pid = fork();
-        	if (child_pid == 0)
-                	execve(argv[0], argv, environ);
-		else        
-			wait(&status);
-		return (0);
-	}
-	else if (check_input(argv) == 1)
-		return (1);
-	else
-		return (2);
-	return (0);
+        check_input(argv, str);
+	child_pid = fork();
+        if (child_pid == 0)
+                execve(argv[0], argv, environ);
+	else        
+		wait(&status);
 }
 
 int main(void)
 {
 	char *line = NULL;
 	size_t len = 0;
-	int i;
 	ssize_t count = 0;
 	char **argv;
 
 	while (1)
 	{
-		i = 0;
 		if ((count = getline(&line, &len, stdin)) == -1)
 			break;
 		argv = cmdarr(line);
-		if (exec_child(argv) == 1)
-			break;
-		else if(exec_child(argv) == 2)
-		{
-			while (environ[i] != NULL)
-        		{
-                		_print(environ[i]);
-                		i++;
-        		}
-		}
+		exec_child(argv, line);
 	}
 	free(argv);
 	free(line);
