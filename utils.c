@@ -1,43 +1,34 @@
 #include "shell.h"
 
-int _strlen(char *str)
+int get_count(char *str, char delim)
 {
-	int len = 0;
+	int count = 0;
 
 	while (*str != '\0')
 	{
-		len++;
+		if (*str != delim && *(str + 1) == delim)
+			count++;
 		str++;
 	}
-	return (len);
+	return (count + 1);
 }
 
-char *_strdup(char *str)
+/**
+ * _strcmp - Compare two strings.
+ *
+ * @s1: The first string.
+ * @s2: The second string.
+ *
+ * Return: 0 if the strings are equal, 1 otherwise.
+ */
+int _strcmp(char *s1, char *s2)
 {
-	int len;
-	char *dup;
-
-	if (str == NULL)
-		return (NULL);
-	len = _strlen(str);
-	dup = malloc((sizeof(char) * len) + 1);
-	if (dup == NULL)
-		return (NULL);
-	dup[len] = '\0';
-	while (len--)
-		dup[len] = str[len];
-	return (dup);
-}
-
-char *_strcpy(char *dest, char *src)
-{
-	int i = 0;
-
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+        while (*s1)
+        {
+                if (*s1 != *s2)
+                        return (1);
+                s1++;
+                s2++;
+        }
+        return (0);
 }
