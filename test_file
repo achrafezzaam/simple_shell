@@ -3,3 +3,4 @@
 /bin/ls
 env
 /bin/ls -la
+/bin/ls -la /tmp
