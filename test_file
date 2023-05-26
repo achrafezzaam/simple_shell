@@ -4,5 +4,6 @@
 env
 /bin/ls -la
 /bin/ls -la /tmp
-exit
+exit 12
 env
+
