@@ -2,3 +2,4 @@
 /bin/ls
 /bin/ls
 env
+/bin/ls -la
