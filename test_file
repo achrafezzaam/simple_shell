@@ -1,9 +1,0 @@
-/bin/ls
-/bin/ls
-/bin/ls
-env
-/bin/ls -la
-/bin/ls -la /tmp
-exit 12
-env
-
