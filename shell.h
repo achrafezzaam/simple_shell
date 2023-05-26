@@ -13,6 +13,8 @@ extern char **environ;
 
 int _strlen(char *str);
 char *_strdup(char *str);
+char *_strcpy(char *dest, char *src);
+
 int get_count(char *str, char delim);
 
 char **cmdarr(char *str);
