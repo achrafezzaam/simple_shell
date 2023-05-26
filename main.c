@@ -5,24 +5,26 @@
  * @cmd: argument 1
  * @str: argument 2
  */
-void check_input(char **cmd, char *str)
+int check_input(char **cmd, char *str)
 {
-int i = 0;
+	int i = 0;
 
 	if (!_strcmp(cmd[0], "exit"))
 	{
 		free(str);
 		free(cmd);
-		exit(98);
+		exit(0);
 	}
 	else if (!_strcmp(cmd[0], "env"))
 	{
-		while (environ[i])
+		while (environ[i] != NULL)
 		{
 			_print(environ[i]);
 			i++;
 		}
+		return (0);
 	}
+	return (1);
 }
 /**
  * exec_child - Title
@@ -34,12 +36,16 @@ void exec_child(char *argv[], char *str)
 	int status;
 	pid_t child_pid;
 
-	check_input(argv, str);
-	child_pid = fork();
-	if (child_pid == 0)
-		execve(argv[0], argv, environ);
-	else
-		wait(&status);
+	if (check_input(argv, str))
+	{
+		child_pid = fork();
+		if (child_pid == 0)
+			execve(argv[0], argv, environ);
+		else
+		{	
+			wait(&status);
+		}
+	}
 }
 /**
  * main - Main function of the program
@@ -60,8 +66,8 @@ int main(void)
 			break;
 		argv = cmdarr(line);
 		exec_child(argv, line);
+		free(argv);
 	}
-	free(argv);
 	free(line);
 	return (0);
 }
